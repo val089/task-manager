@@ -1,2 +1,5 @@
-@import 'variables';
+@import '_variables.scss';
+@import '_base.scss';
+@import '_mixins.scss';
 @import 'components/_login.scss';
+@import 'components/_signup.scss';
