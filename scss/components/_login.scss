@@ -1,0 +1,18 @@
+.login-container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	max-width: 48rem;
+}
+
+.login {
+	&__bg {
+		height: 30rem;
+		border-radius: 4rem 0 0 4rem;
+	}
+
+	&__title {
+		font-family: 'Lobster', sans-serif;
+	}
+}
