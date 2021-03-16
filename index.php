@@ -30,14 +30,13 @@
 						<h4>Welcome in</h4>
 						<h1 class="login__title">Task Manager</h1>
 					</div>
-					<form class="w-100" method="post">
+					<form class="w-100 p-4" method="post">
 						<div class="mb-3">
-							<label for="login" class="form-label">Login:</label>
+							<label for="user_name" class="form-label">Login:</label>
 							<input
-								type="login"
+								type="text"
 								class="form-control"
 								name="user_name"
-								aria-describedby="login"
 							/>
 						</div>
 						<div class="mb-3">
@@ -54,9 +53,7 @@
 							<a href="signup.php" class="link-primary"
 								>Create an account</a
 							>
-							<button type="submit" class="btn btn-primary">
-								Submit
-							</button>
+							<input type="submit" class="btn btn-primary" name="send" value="Submit" />
 						</div>
 					</form>
 				</div>
