@@ -1,0 +1,15 @@
+.signup-page {
+	height: 100vh;
+}
+
+.signup {
+	background: #fff;
+	padding: 2rem;
+	max-width: 35rem;
+	border-radius: 2rem;
+	margin: 1rem;
+
+	&__link {
+		padding-bottom: 1rem;
+	}
+}

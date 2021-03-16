@@ -30,7 +30,7 @@
 						<h4>Welcome in</h4>
 						<h1 class="login__title">Task Manager</h1>
 					</div>
-					<form class="form w-100" method="post">
+					<form class="w-100" method="post">
 						<div class="mb-3">
 							<label for="login" class="form-label">Login:</label>
 							<input
