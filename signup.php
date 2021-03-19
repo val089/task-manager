@@ -141,7 +141,7 @@
 			<div
 				class="d-flex flex-column justify-content-between align-items-center"
 			>
-				<a href="index.php" class="signup__link link-primary mt-2"
+				<a href="login.php" class="signup__link link-primary mt-2"
 					>Already have an account?</a
 				>
 				<input
