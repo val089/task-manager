@@ -5,17 +5,17 @@
 
 	$user_name = '';
 	$password = '';
-	$re_password = '';
+	$password_confirm = '';
 	$error_user_name = '';
 	$error_password = '';
-	$error_re_password = '';
+	$error_password_confirm = '';
 	$success = '';
 	$register_failed = '';
 
 	if (isset( $_POST['send'])) {
-		$user_name = $_POST['user_name'];
-		$password = $_POST['password'];
-		$re_password = $_POST['re-password'];
+		$user_name = validate($_POST['user_name']);
+		$password = validate($_POST['password']);
+		$password_confirm = validate($_POST['password_confirm']);
 
 		if (!$user_name) {
 			$error_user_name = 'Please choose a username';
@@ -28,14 +28,14 @@
 			$error_password = 'Password must contain minimum 6 signs';
 		}
 
-		if (!$re_password) {
-			$error_re_password = 'Please give re password';
+		if (!$password_confirm) {
+			$error_password_confirm = 'Please confirm your password';
 		}
-		else if ($re_password !== $password) {
-			$error_re_password = 'Must be the same as password';
+		else if ($password_confirm !== $password) {
+			$error_password_confirm = 'Must be the same as password';
 		}
 
-		if ($user_name && $password && $re_password && $password === $re_password) {
+		if ($user_name && $password && $password_confirm && $password === $password_confirm) {
 
 			$query = "SELECT * FROM users WHERE user_name='$user_name'";
 			$result = mysqli_query($conn, $query);
@@ -51,7 +51,7 @@
 					$success = 'Your account has been created successfully';
 					$user_name = '';
 					$password = '';
-					$re_password = '';
+					$password_confirm = '';
 				} else {
 					$register_failed = 'An error has been occurred';
 				}
@@ -125,16 +125,16 @@
 				<?php } ?>
 			</div>
 			<div class="mb-3">
-				<label for="re-password" class="form-label">Re Password:</label>
+				<label for="re-password" class="form-label">Confirm password:</label>
 				<input
 					type="password"
 					class="form-control"
-					name="re-password"
-					value="<?php echo $re_password; ?>"
+					name="password_confirm"
+					value="<?php echo $password_confirm; ?>"
 				/>
-				<?php if ($error_re_password) { ?>
+				<?php if ($error_password_confirm) { ?>
 				<p class="error">
-					<?php echo $error_re_password; ?>
+					<?php echo $error_password_confirm; ?>
 				</p>
 				<?php } ?>
 			</div>
