@@ -1,7 +1,14 @@
+<?php
+	session_start();
+	include 'db_connect.php';
+	include 'functions.php';
+
+	$user_data = check_login($conn);
+?>
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
+<head>
+<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>TASK MANAGER</title>
@@ -13,51 +20,12 @@
 			crossorigin="anonymous"
 		/>
 		<link href="css/style.min.css" rel="stylesheet" />
-	</head>
-	<body>
-		<div class="container login-container">
-			<div class="row login">
-				<div
-					class="col-5 login__bg d-none d-sm-block"
-					style="
-						background: url('images/login-bg02.png') no-repeat
-							center;
-						background-size:     cover;
-					"
-				></div>
-				<div class="col d-flex flex-column justify-content-center align-items-center">
-					<div class="text-center pb-5">
-						<h4>Welcome in</h4>
-						<h1 class="login__title">Task Manager</h1>
-					</div>
-					<form class="w-100 p-4" method="post">
-						<div class="mb-3">
-							<label for="user_name" class="form-label">Login:</label>
-							<input
-								type="text"
-								class="form-control"
-								name="user_name"
-							/>
-						</div>
-						<div class="mb-3">
-							<label for="password" class="form-label"
-								>Password:</label
-							>
-							<input
-								type="password"
-								class="form-control"
-								name="password"
-							/>
-						</div>
-						<div class="d-flex justify-content-between align-items-center">
-							<a href="signup.php" class="link-primary"
-								>Create an account</a
-							>
-							<input type="submit" class="btn btn-primary" name="send" value="Submit" />
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</body>
+</head>
+<body>
+    <a href="logout.php">Logout</a>
+    <h1>HOME PAGE</h1>
+
+    <br>
+    Hello, <?php echo $user_data['user_name']; ?>.
+</body>
 </html>
