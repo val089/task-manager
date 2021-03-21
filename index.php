@@ -38,18 +38,13 @@
 	</header>
 
 	<div class="text-center mt-5 mb-5">
-		<h2>Hello, <?php echo $user_name; ?>.</2>
+		<h2 class="fs-1">Hello, <?php echo $user_name; ?>.</2>
 	</div>
 
-	<div class="container">
+	<div class="container mb-5">
 		<div class="row d-flex justify-content-center align-items-center">
-			<form class="w-75" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-				<?php if ($error_task) { ?>
-					<p class="error">
-						<?php echo $error_task; ?>
-					</p>
-				<?php } ?>
-				<div class="input-group mb-3">
+			<form class="w-75" method="post">
+				<div class="input-group">
 					<input type="text" class="form-control" name="task_title" placeholder="Task name" aria-label="Add Task">
 					<input type="submit" class="btn btn-primary" name="add_task" value="Add Task" />
 				</div>
@@ -57,21 +52,11 @@
 			</form>
 		</div>
 		<div class="row">
-			<h2>Your tasks</h2>
+			<h2 class="my-4 text-center">Tasks List</h2>
 			<div class="list-group">
 			<?php
 				$query = "SELECT * FROM tasks where user_name = '$user_name'";
 				$result = mysqli_query($conn, $query);
-				while ( $task = mysqli_fetch_array($result)) {
-					echo '<div class="d-flex">';
-					echo '<label class="list-group-item w-100 fs-5">';
-					echo '<input class="form-check-input me-1" type="checkbox">' . $task['title'];
-					echo '</label>';
-					echo '<button class="border-0 bg-white">';
-					echo '<i class="fas fa-trash fs-5"></i>';
-					echo '</button>';
-					echo '</div>';
-				}
 
 				if ( isset($_POST['add_task']) && !empty($_POST['task_title'])) {
 					$title = $_POST['task_title'];
@@ -79,6 +64,17 @@
 					mysqli_query($conn, $query2);
 					mysqli_close($conn);
 					header("Location: index.php");
+				}
+
+				while ( $task = mysqli_fetch_array($result)) {
+					echo '<div class="d-flex align-items-center">';
+					echo '<label class="list-group-item w-100 fs-5 position-relative">';
+					echo '<input class="form-check-input me-3" type="checkbox">' . $task['title'];
+					echo '<a class="position-absolute end-0" href="delete.php?id=' . $task['id'] . '">';
+					echo '<i class="fas fa-trash fs-5 me-3 icon"></i>';
+					echo '</a>';
+					echo '</label>';
+					echo '</div>';
 				}
 			?>
 			</div>
