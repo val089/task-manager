@@ -35,7 +35,7 @@
 			$error_password_confirm = 'Must be the same as password';
 		}
 
-		if ($user_name && $password && $password_confirm && $password === $password_confirm) {
+		if ($user_name && $password && $password_confirm && $password === $password_confirm && strlen($password) > 5) {
 
 			$query = "SELECT * FROM users WHERE user_name='$user_name'";
 			$result = mysqli_query($conn, $query);

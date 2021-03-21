@@ -1,5 +1,61 @@
-@import '_variables.scss';
-@import '_base.scss';
-@import '_mixins.scss';
-@import 'components/_login.scss';
-@import 'components/_signup.scss';
+html,
+body {
+	overflow-x: hidden;
+	scroll-behavior: smooth;
+}
+
+.error {
+	color: red;
+}
+
+.success {
+	color: rgb(2, 165, 2);
+}
+
+.login-container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	max-width: 48rem;
+}
+
+.login {
+	&__bg {
+		height: 30rem;
+		border-radius: 4rem 0 0 4rem;
+	}
+
+	&__title {
+		font-family: 'Lobster', sans-serif;
+	}
+}
+
+.signup-page {
+	height: 100vh;
+}
+
+.signup {
+	background: #fff;
+	padding: 2rem;
+	max-width: 35rem;
+	border-radius: 2rem;
+	margin: 1rem;
+
+	&__link {
+		padding-bottom: 1rem;
+	}
+}
+
+.navbar-brand {
+	font-size: 2.5rem;
+	font-family: 'Lobster', sans-serif;
+}
+
+.nav-link {
+	font-size: 1.3rem;
+}
+
+.list-group-item {
+	cursor: pointer;
+}
