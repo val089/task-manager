@@ -1,10 +1,10 @@
 <?php
-	session_start();
-	include 'db_connect.php';
-	include 'functions.php';
+session_start();
+include 'db_connect.php';
+include 'functions.php';
 
-	$user_data = check_login($conn);
-	$user_name = $user_data['user_name'];
+$user_data = check_login($conn);
+$user_name = $user_data['user_name'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,19 +46,37 @@
 			<form class="w-75" method="post">
 				<div class="input-group">
 					<input type="text" class="form-control" name="task_title" placeholder="Task name" aria-label="Add Task">
-					<input type="submit" class="btn btn-primary" name="add_task" value="Add Task" />
+					<input type="submit" class="btn btn-primary" name="add_task" value="Add Task"/>
 				</div>
 			</form>
+
+			<form class="w-75 mt-4" method="post">
+				<div class="input-group">
+					<input type="text" class="form-control" name="valueToSearch" placeholder="Filter tasks" aria-label="Filter Tasks">
+					<input type="submit" class="btn btn-primary" name="search" value="Filter" />
+					<input type="submit" class="btn btn-primary" name="reset" value="Reset" />
+				</div>
 			</form>
 		</div>
 		<div class="row">
 			<h2 class="my-4 text-center">Tasks List</h2>
 			<div class="list-group">
 			<?php
-				$query = "SELECT * FROM tasks where user_name = '$user_name'";
-				$result = mysqli_query($conn, $query);
+				if (isset($_POST['search'])) {
+					$valueToSearch = $_POST['valueToSearch'];
+					$query = "SELECT * FROM tasks WHERE user_name = '$user_name' and title LIKE '%$valueToSearch%'";
+					$result = mysqli_query($conn, $query);
+				}
+				else if (isset($_POST['reset'])) {
+					$query = "SELECT * FROM tasks WHERE user_name = '$user_name'";
+					$result = mysqli_query($conn, $query);
+				}
+				else {
+					$query = "SELECT * FROM tasks WHERE user_name = '$user_name'";
+					$result = mysqli_query($conn, $query);
+				}
 
-				if ( isset($_POST['add_task']) && !empty($_POST['task_title'])) {
+				if (isset($_POST['add_task']) && !empty($_POST['task_title'])) {
 					$title = $_POST['task_title'];
 					$query2 = "INSERT tasks (user_name,title) VALUES ('$user_name','$title')";
 					mysqli_query($conn, $query2);
@@ -66,7 +84,7 @@
 					header("Location: index.php");
 				}
 
-				while ( $task = mysqli_fetch_array($result)) {
+				while ($task = mysqli_fetch_array($result)) {
 					echo '<div class="d-flex align-items-center">';
 					echo '<label class="list-group-item w-100 fs-5 position-relative">';
 					echo '<input class="form-check-input me-3" type="checkbox">' . $task['title'];
