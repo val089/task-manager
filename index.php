@@ -77,7 +77,7 @@ $user_name = $user_data['user_name'];
 				}
 
 				if (isset($_POST['add_task']) && !empty($_POST['task_title'])) {
-					$title = $_POST['task_title'];
+					$title = strip_tags($_POST['task_title']);
 					$query2 = "INSERT tasks (user_name,title) VALUES ('$user_name','$title')";
 					mysqli_query($conn, $query2);
 					mysqli_close($conn);
