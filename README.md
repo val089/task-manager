@@ -1,5 +1,5 @@
 # Task Manager
-Task manager with login and sign up system created in PHP and MySQL.
+Task manager with login and sign up system created in PHP.
 
 ## Setup
 live: http://kamilszerlag.online/
